@@ -15,8 +15,6 @@ public class DataFlowReducer extends Reducer<Text, DataFlowEntity, Text, Text> {
     int sumUp = 0;
     int sumDown = 0;
 
-    int index = 0;
-
     @Override
     protected void reduce(Text key, Iterable<DataFlowEntity> values, Reducer<Text, DataFlowEntity, Text, Text>.Context context) throws IOException, InterruptedException {
         values.forEach(e -> {
@@ -24,15 +22,7 @@ public class DataFlowReducer extends Reducer<Text, DataFlowEntity, Text, Text> {
             sumDown += Integer.valueOf(e.getDownFlowNumber());
         });
         Text text = new Text();
-        if (index == 0) {
-            text.set(
-                    "\n手机号\t上行流量\t下行流量\t总流量\n"+
-                    sumUp + "\t" + sumDown + "\t" + (sumUp + sumDown)
-            );
-            index = -1;
-        }else {
-            text.set(sumUp + "\t" + sumDown + "\t" + (sumUp + sumDown));
-        }
+        text.set(sumUp + "\t" + sumDown + "\t" + (sumUp + sumDown));
         context.write(key, text);
 
 

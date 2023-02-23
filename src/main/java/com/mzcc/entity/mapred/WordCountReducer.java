@@ -19,7 +19,7 @@ public class WordCountReducer extends Reducer<Text, IntWritable, Text, IntWritab
         for (IntWritable value : values) {
             sum += value.get();
         }
-        log.info("当前key {}, 总数 : {}", key, sum);
+        log.info("当前key {}, 总数 " + "" + ": {}", key, sum);
         IntWritable total = new IntWritable(sum);
         context.write(key, total);
     }

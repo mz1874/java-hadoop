@@ -6,6 +6,7 @@ import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapred.OutputCollector;
 import org.apache.hadoop.mapred.Reporter;
 import org.apache.hadoop.mapreduce.Mapper;
+
 import java.io.IOException;
 
 /**
@@ -16,15 +17,24 @@ import java.io.IOException;
 public class DataFlowMap extends Mapper<LongWritable, Text, Text, DataFlowEntity> {
 
     Text text;
+
     @Override
     protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, DataFlowEntity>.Context context) throws IOException, InterruptedException {
         String string = value.toString();
-        String[] arr = string.split(" ");
+        String[] arr = string.split("\t");
         DataFlowEntity dataFlowEntity = new DataFlowEntity();
-        dataFlowEntity.setUpFlowNumber(Integer.valueOf(arr[1]));
-        dataFlowEntity.setDownFlowNumber(Integer.valueOf(arr[2]));
+        String arr4 = arr[4];
+        String arr5 = arr[5];
+        if ("".equals(arr4)){
+            arr4 = "0";
+        }
+        if ("".equals(arr5)){
+            arr5 = "0";
+        }
+        dataFlowEntity.setUpFlowNumber(Integer.valueOf(arr4));
+        dataFlowEntity.setDownFlowNumber(Integer.valueOf(arr5));
         dataFlowEntity.setTotalDateFlowNumber();
-        text = new Text(arr[0]);
+        text = new Text(arr[1]);
         context.write(text, dataFlowEntity);
     }
 }

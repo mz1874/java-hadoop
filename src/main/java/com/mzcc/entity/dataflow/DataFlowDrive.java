@@ -41,6 +41,8 @@ public class DataFlowDrive {
 
         instance.setMapperClass(DataFlowMap.class);
         instance.setReducerClass(DataFlowReducer.class);
+        instance.setPartitionerClass(MyPartitioner.class);
+        instance.setNumReduceTasks(3);
 
         instance.setMapOutputKeyClass(Text.class);
         instance.setMapOutputValueClass(DataFlowEntity.class);
@@ -64,6 +66,7 @@ public class DataFlowDrive {
             OUT_PUT_FOLDER = "/Users/aiden/Downloads/1";
             INPUT_FILE_NAME = "/Users/aiden/Downloads/tel.txt";
         }else {
+            INPUT_FILE_NAME = "D:\\BaiduNetdiskDownload\\尚硅谷大数据技术之Hadoop3.x\\资料\\11_input\\inputflow\\phone_data.txt";
             OUT_PUT_FOLDER = "C:\\1";
         }
 

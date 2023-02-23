@@ -1,0 +1,402 @@
+@startuml
+participant Actor
+Actor -> JobSubmitter : submitJobInternal 提交
+activate JobSubmitter
+JobSubmitter -> JobSubmitter : checkSpecs
+activate JobSubmitter
+JobSubmitter -> ReflectionUtils : newInstance
+activate ReflectionUtils
+ReflectionUtils --> JobSubmitter
+deactivate ReflectionUtils
+JobSubmitter -> OutputFormat : checkOutputSpecs
+activate OutputFormat
+OutputFormat --> JobSubmitter
+deactivate OutputFormat
+JobSubmitter -> OutputFormat : checkOutputSpecs
+activate OutputFormat
+OutputFormat --> JobSubmitter
+deactivate OutputFormat
+JobSubmitter --> JobSubmitter
+deactivate JobSubmitter
+JobSubmitter -> JobSubmitter : addMRFrameworkToDistributedCache
+activate JobSubmitter
+JobSubmitter -> Configuration : get
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> FileSystem : get
+activate FileSystem
+FileSystem --> JobSubmitter
+deactivate FileSystem
+JobSubmitter -> FileSystem : makeQualified
+activate FileSystem
+FileSystem --> JobSubmitter
+deactivate FileSystem
+JobSubmitter -> Path : toUri
+activate Path
+Path --> JobSubmitter
+deactivate Path
+JobSubmitter -> FileContext : getFileContext
+activate FileContext
+FileContext --> JobSubmitter
+deactivate FileContext
+JobSubmitter -> FileContext : resolvePath
+activate FileContext
+FileContext --> JobSubmitter
+deactivate FileContext
+JobSubmitter -> Path : toUri
+activate Path
+Path --> JobSubmitter
+deactivate Path
+JobSubmitter -> DistributedCache : addCacheArchive
+activate DistributedCache
+DistributedCache --> JobSubmitter
+deactivate DistributedCache
+JobSubmitter --> JobSubmitter
+deactivate JobSubmitter
+JobSubmitter -> JobSubmissionFiles : getStagingDir
+activate JobSubmissionFiles
+JobSubmissionFiles --> JobSubmitter
+deactivate JobSubmissionFiles
+JobSubmitter -> Configuration : set
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> Configuration : set
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> JobID : toString
+activate JobID
+JobID --> JobSubmitter
+deactivate JobID
+JobSubmitter -> Configuration : set
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> Configuration : set
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> Path : toString
+activate Path
+Path --> JobSubmitter
+deactivate Path
+JobSubmitter -> Configuration : set
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> Logger : debug
+activate Logger
+Logger --> JobSubmitter
+deactivate Logger
+JobSubmitter -> TokenCache : obtainTokensForNamenodes
+activate TokenCache
+TokenCache --> JobSubmitter
+deactivate TokenCache
+JobSubmitter -> JobSubmitter : populateTokenCache
+activate JobSubmitter
+JobSubmitter -> JobSubmitter : readTokensFromFiles
+activate JobSubmitter
+JobSubmitter -> Configuration : get
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> FileSystem : getLocal
+activate FileSystem
+FileSystem --> JobSubmitter
+deactivate FileSystem
+JobSubmitter -> FilterFileSystem : makeQualified
+activate FilterFileSystem
+FilterFileSystem --> JobSubmitter
+deactivate FilterFileSystem
+JobSubmitter -> Credentials : readTokenStorageFile
+activate Credentials
+Credentials --> JobSubmitter
+deactivate Credentials
+JobSubmitter -> Credentials : addAll
+activate Credentials
+Credentials --> JobSubmitter
+deactivate Credentials
+JobSubmitter -> Configuration : get
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> Logger : info
+activate Logger
+Logger --> JobSubmitter
+deactivate Logger
+JobSubmitter -> Path : toUri
+activate Path
+Path --> JobSubmitter
+deactivate Path
+JobSubmitter -> JsonSerialization : mapReader
+activate JsonSerialization
+JsonSerialization --> JobSubmitter
+deactivate JsonSerialization
+JobSubmitter -> ObjectReader : readValue
+activate ObjectReader
+ObjectReader --> JobSubmitter
+deactivate ObjectReader
+JobSubmitter -> Map : entrySet
+activate Map
+Map --> JobSubmitter
+deactivate Map
+JobSubmitter -> String : getBytes
+activate String
+String --> JobSubmitter
+deactivate String
+JobSubmitter -> Credentials : addSecretKey
+activate Credentials
+Credentials --> JobSubmitter
+deactivate Credentials
+JobSubmitter -> Logger : warn
+activate Logger
+Logger --> JobSubmitter
+deactivate Logger
+JobSubmitter --> JobSubmitter
+deactivate JobSubmitter
+JobSubmitter -> Configuration : getStrings
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> Arrays : toString
+activate Arrays
+Arrays --> JobSubmitter
+deactivate Arrays
+JobSubmitter -> Logger : debug
+activate Logger
+Logger --> JobSubmitter
+deactivate Logger
+JobSubmitter -> TokenCache : obtainTokensForNamenodes
+activate TokenCache
+TokenCache --> JobSubmitter
+deactivate TokenCache
+JobSubmitter --> JobSubmitter
+deactivate JobSubmitter
+JobSubmitter -> TokenCache : getShuffleSecretKey
+activate TokenCache
+TokenCache --> JobSubmitter
+deactivate TokenCache
+JobSubmitter -> KeyGenerator : getInstance
+activate KeyGenerator
+KeyGenerator --> JobSubmitter
+deactivate KeyGenerator
+JobSubmitter -> KeyGenerator : init
+activate KeyGenerator
+KeyGenerator --> JobSubmitter
+deactivate KeyGenerator
+JobSubmitter -> KeyGenerator : generateKey
+activate KeyGenerator
+KeyGenerator --> JobSubmitter
+deactivate KeyGenerator
+JobSubmitter -> TokenCache : setShuffleSecretKey
+activate TokenCache
+TokenCache --> JobSubmitter
+deactivate TokenCache
+JobSubmitter -> CryptoUtils : isEncryptedSpillEnabled
+activate CryptoUtils
+CryptoUtils --> JobSubmitter
+deactivate CryptoUtils
+JobSubmitter -> Configuration : setInt
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> Logger : warn
+activate Logger
+Logger --> JobSubmitter
+deactivate Logger
+JobSubmitter -> JobSubmitter : copyAndConfigureFiles
+activate JobSubmitter
+JobSubmitter -> Configuration : getBoolean
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> JobResourceUploader : uploadResources
+activate JobResourceUploader
+JobResourceUploader --> JobSubmitter
+deactivate JobResourceUploader
+JobSubmitter --> JobSubmitter
+deactivate JobSubmitter
+JobSubmitter -> JobSubmissionFiles : getJobConfPath
+activate JobSubmissionFiles
+JobSubmissionFiles --> JobSubmitter
+deactivate JobSubmissionFiles
+JobSubmitter -> FileSystem : makeQualified
+activate FileSystem
+FileSystem --> JobSubmitter
+deactivate FileSystem
+JobSubmitter -> Logger : debug
+activate Logger
+Logger --> JobSubmitter
+deactivate Logger
+JobSubmitter -> JobSubmitter : writeSplits
+activate JobSubmitter
+JobSubmitter -> JobSubmitter : writeNewSplits
+activate JobSubmitter
+JobSubmitter -> ReflectionUtils : newInstance
+activate ReflectionUtils
+ReflectionUtils --> JobSubmitter
+deactivate ReflectionUtils
+JobSubmitter -> InputFormat : getSplits
+activate InputFormat
+InputFormat --> JobSubmitter
+deactivate InputFormat
+JobSubmitter -> List : size
+activate List
+List --> JobSubmitter
+deactivate List
+JobSubmitter -> List : toArray
+activate List
+List --> JobSubmitter
+deactivate List
+JobSubmitter -> Arrays : sort
+activate Arrays
+Arrays --> JobSubmitter
+deactivate Arrays
+JobSubmitter -> Path : getFileSystem
+activate Path
+Path --> JobSubmitter
+deactivate Path
+JobSubmitter -> JobSplitWriter : createSplitFiles
+activate JobSplitWriter
+JobSplitWriter --> JobSubmitter
+deactivate JobSplitWriter
+JobSubmitter --> JobSubmitter
+deactivate JobSubmitter
+JobSubmitter -> JobSubmitter : writeOldSplits
+activate JobSubmitter
+JobSubmitter -> InputFormat : getSplits
+activate InputFormat
+InputFormat --> JobSubmitter
+deactivate InputFormat
+JobSubmitter -> Anonymous : compare
+activate Anonymous
+Anonymous -> Arrays : sort
+activate Arrays
+Arrays --> Anonymous
+deactivate Arrays
+Anonymous -> Path : getFileSystem
+activate Path
+Path --> Anonymous
+deactivate Path
+Anonymous -> JobSplitWriter : createSplitFiles
+activate JobSplitWriter
+JobSplitWriter --> Anonymous
+deactivate JobSplitWriter
+Anonymous --> JobSubmitter
+deactivate Anonymous
+JobSubmitter --> JobSubmitter
+deactivate JobSubmitter
+JobSubmitter --> JobSubmitter
+deactivate JobSubmitter
+JobSubmitter -> Configuration : setInt
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> Logger : info
+activate Logger
+Logger --> JobSubmitter
+deactivate Logger
+JobSubmitter -> Configuration : getInt
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> Configuration : get
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> ClientProtocol : getQueueAdmins
+activate ClientProtocol
+ClientProtocol --> JobSubmitter
+deactivate ClientProtocol
+JobSubmitter -> QueueManager : toFullPropertyName
+activate QueueManager
+QueueManager --> JobSubmitter
+deactivate QueueManager
+JobSubmitter -> Configuration : set
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> TokenCache : cleanUpTokenReferral
+activate TokenCache
+TokenCache --> JobSubmitter
+deactivate TokenCache
+JobSubmitter -> Configuration : getBoolean
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> Token : decodeIdentifier
+activate Token
+Token --> JobSubmitter
+deactivate Token
+JobSubmitter -> ArrayList : add
+activate ArrayList
+ArrayList --> JobSubmitter
+deactivate ArrayList
+JobSubmitter -> ArrayList : size
+activate ArrayList
+ArrayList --> JobSubmitter
+deactivate ArrayList
+JobSubmitter -> ArrayList : toArray
+activate ArrayList
+ArrayList --> JobSubmitter
+deactivate ArrayList
+JobSubmitter -> Configuration : setStrings
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> ReservationId : toString
+activate ReservationId
+ReservationId --> JobSubmitter
+deactivate ReservationId
+JobSubmitter -> Configuration : set
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> JobSubmitter : writeConf
+activate JobSubmitter
+JobSubmitter -> FileSystem : create
+activate FileSystem
+FileSystem --> JobSubmitter
+deactivate FileSystem
+JobSubmitter -> Configuration : writeXml
+activate Configuration
+Configuration --> JobSubmitter
+deactivate Configuration
+JobSubmitter -> FSDataOutputStream : close
+activate FSDataOutputStream
+FSDataOutputStream --> JobSubmitter
+deactivate FSDataOutputStream
+JobSubmitter --> JobSubmitter
+deactivate JobSubmitter
+JobSubmitter -> JobSubmitter : printTokens
+activate JobSubmitter
+JobSubmitter -> Logger : info
+activate Logger
+Logger --> JobSubmitter
+deactivate Logger
+JobSubmitter -> Logger : info
+activate Logger
+Logger --> JobSubmitter
+deactivate Logger
+JobSubmitter --> JobSubmitter
+deactivate JobSubmitter
+JobSubmitter -> Path : toString
+activate Path
+Path --> JobSubmitter
+deactivate Path
+JobSubmitter -> ClientProtocol : submitJob
+activate ClientProtocol
+ClientProtocol --> JobSubmitter
+deactivate ClientProtocol
+JobSubmitter -> Logger : info
+activate Logger
+Logger --> JobSubmitter
+deactivate Logger
+JobSubmitter -> FileSystem : delete
+activate FileSystem
+FileSystem --> JobSubmitter
+deactivate FileSystem
+return
+@enduml

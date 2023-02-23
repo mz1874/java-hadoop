@@ -14,7 +14,7 @@ import java.io.IOException;
  * @description
  */
 @Data
-public class DataFlowEntity implements Comparable<DataFlowEntity>, Writable {
+public class DataFlowEntity implements Writable {
 
     private Text phoneNumber;
 
@@ -34,10 +34,6 @@ public class DataFlowEntity implements Comparable<DataFlowEntity>, Writable {
         this.totalDateFlowNumber = upFlowNumber + downFlowNumber;
     }
 
-    @Override
-    public int compareTo(DataFlowEntity o) {
-        return 0;
-    }
 
     @Override
     public void write(DataOutput dataOutput) throws IOException {
