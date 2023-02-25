@@ -1,4 +1,4 @@
-package com.mzcc.entity.mapred;
+package com.mzcc.mapred;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;

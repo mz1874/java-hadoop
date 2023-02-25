@@ -1,4 +1,4 @@
-package com.mzcc.entity.mapred;
+package com.mzcc.mapred;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.io.IntWritable;

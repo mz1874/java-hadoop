@@ -1,4 +1,4 @@
-package com.mzcc.entity.dataflow;
+package com.mzcc.entity;
 
 import lombok.Data;
 import org.apache.hadoop.io.Text;

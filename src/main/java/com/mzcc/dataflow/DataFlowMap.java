@@ -1,10 +1,8 @@
-package com.mzcc.entity.dataflow;
+package com.mzcc.dataflow;
 
+import com.mzcc.entity.DataFlowEntity;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.JobConf;
-import org.apache.hadoop.mapred.OutputCollector;
-import org.apache.hadoop.mapred.Reporter;
 import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;

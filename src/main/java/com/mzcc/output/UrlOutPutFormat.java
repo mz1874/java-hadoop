@@ -1,4 +1,4 @@
-package com.mzcc.entity.output;
+package com.mzcc.output;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.hadoop.conf.Configuration;

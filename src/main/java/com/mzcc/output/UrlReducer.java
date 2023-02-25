@@ -1,4 +1,4 @@
-package com.mzcc.entity.output;
+package com.mzcc.output;
 
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;

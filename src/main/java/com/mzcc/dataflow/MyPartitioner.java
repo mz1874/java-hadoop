@@ -1,6 +1,6 @@
-package com.mzcc.entity.dataflow;
+package com.mzcc.dataflow;
 
-import com.mzcc.entity.dataflow.DataFlowEntity;
+import com.mzcc.entity.DataFlowEntity;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Partitioner;
 
