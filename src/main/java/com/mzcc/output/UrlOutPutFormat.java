@@ -14,7 +14,7 @@ public class UrlOutPutFormat extends FileOutputFormat<Text, NullWritable> {
 
     @Override
     public RecordWriter<Text, NullWritable> getRecordWriter(TaskAttemptContext context) throws IOException, InterruptedException {
-        return null;
+        return new UrlRecordWriter(context);
     }
 
 }

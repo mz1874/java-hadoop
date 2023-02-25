@@ -24,8 +24,8 @@ public class UrlRecordWriter extends RecordWriter<Text, NullWritable> {
     public UrlRecordWriter(TaskAttemptContext conf){
         try {
             FileSystem system = FileSystem.get(conf.getConfiguration());
-            firstOne = system.create(new Path(""));
-            firstTwo = system.create(new Path(""));
+            firstOne = system.create(new Path("D:\\1.log"));
+            firstTwo = system.create(new Path("D:\\2.log"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,9 +34,9 @@ public class UrlRecordWriter extends RecordWriter<Text, NullWritable> {
     @Override
     public void write(Text key, NullWritable value) throws IOException, InterruptedException {
         if (key.toString().contains("atguigu")) {
-            firstOne.write(key.getBytes());
+            firstOne.writeBytes(key.toString() + "\n");
         }else {
-            firstTwo.write(key.getBytes());
+            firstTwo.writeBytes(key.toString() + "\n");
         }
     }
 
