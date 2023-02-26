@@ -23,8 +23,8 @@ public class ProductJoin implements Writable {
     @Override
     public void write(DataOutput out) throws IOException {
         out.writeUTF(id);
-        out.writeUTF(name);
-        out.writeUTF(quantity);
+        out.writeUTF(null == name ? "" : name);
+        out.writeUTF(null == quantity? "" : quantity);
         out.writeUTF(flag);
         out.writeUTF(pid);
     }

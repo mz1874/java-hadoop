@@ -1,12 +1,13 @@
 package com.mzcc.reduceJoin;
 
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 
 import java.io.IOException;
 
-public class ProductMap extends Mapper<Long, Text, Text, ProductJoin> {
+public class ProductMap extends Mapper<LongWritable, Text, Text, ProductJoin> {
 
     private String name;
     Text text = new Text();
@@ -17,15 +18,15 @@ public class ProductMap extends Mapper<Long, Text, Text, ProductJoin> {
     }
 
     @Override
-    protected void setup(Mapper<Long, Text, Text, ProductJoin>.Context context) throws IOException, InterruptedException {
+    protected void setup(Mapper<LongWritable, Text, Text, ProductJoin>.Context context) throws IOException, InterruptedException {
         FileSplit inputSplit = (FileSplit) context.getInputSplit();
         name = inputSplit.getPath().getName();
     }
 
 
     @Override
-    protected void map(Long key, Text value, Mapper<Long, Text, Text, ProductJoin>.Context context) throws IOException, InterruptedException {
-        String[] split = value.toString().split("\t");
+    protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, ProductJoin>.Context context) throws IOException, InterruptedException {
+        String[] split = value.toString().split(" ");
         ProductJoin productJoin = new ProductJoin();
         if (this.name.contains("order")) {
             productJoin.setId(split[0]);
@@ -44,13 +45,13 @@ public class ProductMap extends Mapper<Long, Text, Text, ProductJoin> {
     }
 
     @Override
-    protected void cleanup(Mapper<Long, Text, Text, ProductJoin>.Context context) throws IOException, InterruptedException {
+    protected void cleanup(Mapper<LongWritable, Text, Text, ProductJoin>.Context context) throws IOException, InterruptedException {
         super.cleanup(context);
         System.out.println("cleanUp");
     }
 
     @Override
-    public void run(Mapper<Long, Text, Text, ProductJoin>.Context context) throws IOException, InterruptedException {
+    public void run(Mapper<LongWritable, Text, Text, ProductJoin>.Context context) throws IOException, InterruptedException {
         super.run(context);
         System.out.println("RUN");
     }
